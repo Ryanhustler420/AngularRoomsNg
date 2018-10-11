@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Rental } from './rental.model';
 
 @Injectable()
 export class RentalService {
 
-    private rentals: any[] = [{
-        id:1,
+    private rentals: Rental[] = [{
+        id:'1',
         title: "Central Apartment",
         city: "New York",
         street: "Times Square",
@@ -17,7 +18,7 @@ export class RentalService {
         shared: false,
         createdAt: '24/12/2018'
       },{
-        id:2,
+        id:'2',
         title: "Central Apartment 2",
         city: "Chicago",
         street: "philidophia Square",
@@ -29,7 +30,7 @@ export class RentalService {
         shared: false,
         createdAt: '12/10/2017'
       },{
-        id:3,
+        id:'3',
         title: "Central House",
         city: "New York",
         street: "quick town",
@@ -41,7 +42,7 @@ export class RentalService {
         shared: false,
         createdAt: '1/1/2013'
       },{
-        id:4,
+        id:'4',
         title: "Gupta Apartment",
         city: "Jamshedpur",
         street: "Lal Building",
@@ -54,8 +55,8 @@ export class RentalService {
         createdAt: '6/07/2016'
       }];
 
-      public getRentals(): any {
-          const rentalObservable = new Observable((observer) => {
+      public getRentals(): Observable<Rental[]> {
+          const rentalObservable:Observable<Rental[]> = new Observable((observer) => {
             setTimeout(() => {
               observer.next(this.rentals);
             },1000);
