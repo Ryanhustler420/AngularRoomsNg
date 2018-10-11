@@ -8,12 +8,17 @@ import { RentalService } from './../Shared/rental.service';
 })
 export class RentalListComponent implements OnInit {
 
-  rentals: any[];
+  rentals: any[] = [];
 
   constructor(private rentalService:RentalService) { }
 
   ngOnInit() {
-    this.rentals = this.rentalService.getRentals();
+    const rentalObservable = this.rentalService.getRentals();
+    rentalObservable.subscribe(
+        (rentals) => { this.rentals = rentals; }, //on success
+        (err) => {}, // on error
+        () => {} // nothing just for completeness
+    );
   }
 
 }

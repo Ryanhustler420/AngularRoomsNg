@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class RentalService {
@@ -53,8 +54,22 @@ export class RentalService {
         createdAt: '6/07/2016'
       }];
 
-      public getRentals(): any[] {
-          return this.rentals;
+      public getRentals(): any {
+          const rentalObservable = new Observable((observer) => {
+            setTimeout(() => {
+              observer.next(this.rentals);
+            },1000);
+
+            setTimeout(() => {
+              observer.error("Something went wrong!");
+            },2000);
+
+            setTimeout(() => {
+              observer.complete();
+            },3000);
+
+          });
+          return rentalObservable;
       }
 
 
