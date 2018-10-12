@@ -56,7 +56,7 @@ export class RentalService {
       }];
 
       public getRentals(): Observable<Rental[]> {
-          const rentalObservable:Observable<Rental[]> = new Observable((observer) => {
+          return new Observable<Rental[]>((observer) => {
             setTimeout(() => {
               observer.next(this.rentals);
             },1000);
@@ -70,7 +70,7 @@ export class RentalService {
             },3000);
 
           });
-          return rentalObservable;
+          
       }
 
       public getRentalById(rentalId:string) : Observable<Rental> {
