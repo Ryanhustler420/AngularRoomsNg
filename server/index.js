@@ -4,6 +4,9 @@ const config = require('./config/dev');
 const Rental = require('./models/rental');
 const FakeDb = require('./fake-db');
 
+//Routes imports
+const rentalRoutes = require('./routes/rentals');
+
 mongoose.connect(config.DB_URI, { useNewUrlParser: true })
     .then((success) => {
         const fakeDb = new FakeDb();
@@ -12,10 +15,8 @@ mongoose.connect(config.DB_URI, { useNewUrlParser: true })
 
 const app = express();
 
-app.get('/rentals',(req,res) => {
-    res.json({'success':true});
-});
-
+// middlewares
+app.use('/api/v1/rentals',rentalRoutes);
 
 const PORT = process.env.PORT || 3001;
 
