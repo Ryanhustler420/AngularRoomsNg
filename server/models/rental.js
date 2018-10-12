@@ -27,7 +27,7 @@ const rentalSchema = new Schema({
         type: String,
         required: true
     },
-    betrooms: Number,
+    bedrooms: Number,
     shared: Boolean,
     description: {
         type: String,
