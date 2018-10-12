@@ -5,6 +5,7 @@ import { RentalComponent } from './rental.component';
 import { CommonModule } from '@angular/common';
 import { RentalService } from './Shared/rental.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NgPipesModule } from 'ngx-pipes';
 
 import { Routes, RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
     imports:[
         CommonModule,
         RouterModule.forChild(routes),
-        HttpClientModule
+        HttpClientModule,
+        NgPipesModule
     ],
     providers:[RentalService]
 })
