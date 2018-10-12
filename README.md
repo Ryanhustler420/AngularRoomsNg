@@ -34,3 +34,5 @@ ng-serve
 type this address in browser
 
 > http://localhost:4200/
+
+> create a database using [this Link](https://mlab.com/) and download mongoose npm package
