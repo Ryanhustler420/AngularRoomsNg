@@ -40,3 +40,5 @@ type this address in browser
 > Proxy To Backend [know here](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) . when you get CROS error!
 
 > Ngx Pipes [Here](https://github.com/danrevah/ngx-pipes)
+
+> Angular Google Maps (Getting started)[https://angular-maps.com/guides/getting-started/]
