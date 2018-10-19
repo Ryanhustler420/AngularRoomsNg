@@ -6,6 +6,7 @@ const FakeDb = require('./fake-db');
 
 //Routes imports
 const rentalRoutes = require('./routes/rentals');
+const userRoutes = require('./routes/users');
 
 mongoose.connect(config.DB_URI, { useNewUrlParser: true })
     .then((success) => {
@@ -17,6 +18,7 @@ const app = express();
 
 // middlewares
 app.use('/api/v1/rentals',rentalRoutes);
+app.use('/api/v1/users',userRoutes);
 
 const PORT = process.env.PORT || 3001;
 
