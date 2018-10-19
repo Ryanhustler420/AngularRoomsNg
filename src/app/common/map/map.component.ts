@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   }
   
   mapReadyHandler(){
-    this.mapService.geoCodeLocation(this.location).subscribe(
+    this.mapService.getGeoLocation(this.location).subscribe(
       (coordinates) => {
         this.lat = coordinates.lat;
         this.lng = coordinates.lng;
