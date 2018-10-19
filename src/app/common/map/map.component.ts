@@ -9,6 +9,7 @@ import { MapService } from './map.service';
 export class MapComponent implements OnInit {
 
   @Input() location : string;
+  isPositionError: boolean = false;
 
   lat: number;
   lng: number;
@@ -19,10 +20,16 @@ export class MapComponent implements OnInit {
   }
   
   mapReadyHandler(){
+    // let currentLocation = this.location;
+    // if(Math.round(Math.random() * 10) > 5){
+    //   currentLocation = "someJubrish";
+    // }
     this.mapService.getGeoLocation(this.location).subscribe(
       (coordinates) => {
         this.lat = coordinates.lat;
         this.lng = coordinates.lng;
+      }, () => {
+        this.isPositionError = true;
       }
     )
   }
