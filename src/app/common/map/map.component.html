@@ -1,3 +1,3 @@
-<agm-map (mapReady)="mapReadyHandler()" [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<agm-map (mapReady)="mapReadyHandler()" [latitude]="lat" [longitude]="lng" [zoom]="13">
+  <agm-circle [latitude]="lat" [longitude]="lng" [radius]="800" [fillColor]="'#f44366'" [fillOpacity]="0.4"></agm-circle>
 </agm-map>
