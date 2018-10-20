@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const {normalizeErrors} = require('../helper/mongoose');
 exports.auth = function (req,res) {
     
 }
@@ -30,9 +30,9 @@ exports.register = function(req, res) {
             password
         });
 
-        user.save(function(){
+        user.save(function(err){
             if(err){
-               res.status(422).send({'mongoose':'handle mongoose errors in next commit'});
+              return res.status(422).send({errors:normalizeErrors(err.errors)});
             }
 
             res.json({'register': true});
