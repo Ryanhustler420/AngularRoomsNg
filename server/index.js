@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const config = require('./config/dev');
 const Rental = require('./models/rental');
 const FakeDb = require('./fake-db');
+const bodyParser = require('body-parser');
 
 //Routes imports
 const rentalRoutes = require('./routes/rentals');
@@ -11,10 +12,12 @@ const userRoutes = require('./routes/users');
 mongoose.connect(config.DB_URI, { useNewUrlParser: true })
     .then((success) => {
         const fakeDb = new FakeDb();
-        fakeDb.seedDb();   
+        fakeDb.seedDb();
     });
 
 const app = express();
+
+app.use(bodyParser.json());
 
 // middlewares
 app.use('/api/v1/rentals',rentalRoutes);
