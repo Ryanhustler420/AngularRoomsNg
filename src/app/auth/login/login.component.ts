@@ -27,4 +27,24 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  isInvalidForm(fieldName) : boolean {
+    return  this.loginForm.controls[fieldName].invalid && 
+    (
+      this.loginForm.controls[fieldName].dirty ||
+      this.loginForm.controls[fieldName].touched
+    )
+  }
+
+  isRequired(fieldName):boolean {
+    return this.loginForm.controls[fieldName].errors.required
+  }
+
+  isCorrect(fieldName): boolean {
+    return this.loginForm.controls[fieldName].errors.pattern;
+  }
+
+  Login(){
+    console.log(this.loginForm.value);
+  }
+
 }

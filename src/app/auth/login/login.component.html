@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5">
         <h1>Login</h1>
-        <form [formGroup]="loginForm" #LoginForm="ngForm">
+        <form [formGroup]="loginForm" #LoginForm="ngForm" (ngSubmit)="Login()">
           <div class="form-group">
             <label for="email">Email</label>
             <input 
@@ -13,6 +13,15 @@
                   name="email"
                   formControlName="email"
                   >
+              <div *ngIf="isInvalidForm('email')" class="alert alert-danger">
+                  <div *ngIf="isRequired('email')">
+                    Email is required.
+                  </div>
+
+                  <div *ngIf="isCorrect('email')">
+                      Must be Valid email formet.
+                    </div>
+              </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
