@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent },
@@ -15,8 +15,10 @@ const routes: Routes = [
     RegisterComponent
   ],
   imports: [
-RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule
   ],
   providers: []
 })
+
 export class AuthModule { }
