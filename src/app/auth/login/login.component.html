@@ -35,6 +35,12 @@
           </div>
           <button type="submit" [disabled]="!LoginForm.valid" class="btn btn-bwm">Submit</button>
         </form>
+        <br />
+        <div *ngIf="errors.length > 0"class="alert alert-danger">
+          <p *ngFor="let error of errors">
+            {{error.detail}}
+          </p>
+        </div>
       </div>
       <div class="col-md-6 ml-auto">
         <div class="image-container">
