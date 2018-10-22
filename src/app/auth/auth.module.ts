@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { AuthService } from './shared/auth.service';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent },
@@ -17,11 +18,11 @@ const routes: Routes = [
     RegisterComponent
   ],
   imports: [
-    RouterModule.forChild(routes),
+  RouterModule.forChild(routes),
     FormsModule,
     BrowserModule
   ],
-  providers: []
+  providers: [AuthService]
 })
 
 export class AuthModule { }

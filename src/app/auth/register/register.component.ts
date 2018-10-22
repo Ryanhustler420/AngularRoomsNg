@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './../shared/auth.service';
 
 @Component({
   selector: 'bwm-register',
@@ -9,13 +10,20 @@ export class RegisterComponent implements OnInit {
 
   formData: any = {};
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }
 
   register(registerForm) {
-    console.log(registerForm);
+    // console.log(registerForm);
+    this.auth.register(this.formData).subscribe(
+      () => {
+        console.log('success!');
+      },
+      (errorResponse) => {
+
+      });
   }
 
 }
