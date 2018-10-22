@@ -53,5 +53,4 @@ export class MapService {
             return this.geocodeLocation(location);
         }
     }
-    \
 }
