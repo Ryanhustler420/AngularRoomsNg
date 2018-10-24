@@ -8,6 +8,7 @@ import { RentalComponent } from './rental/rental.component';
 
 import { RentalModule } from './rental/rental.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'/rentals', pathMatch:'full'}
@@ -16,10 +17,11 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthComponent
   ],
   imports: [
-RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes),
     BrowserModule,
     RentalModule,
     AuthModule,

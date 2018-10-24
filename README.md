@@ -42,3 +42,5 @@ type this address in browser
 > Ngx Pipes [Here](https://github.com/danrevah/ngx-pipes)
 
 > Angular Google Maps (Getting started)[https://angular-maps.com/guides/getting-started/]
+
+> in client auth feature branch run build and check if every thing is working as expected

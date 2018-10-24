@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
-import { ApiKey } from './../../../../server/config/Map_api';
 import { MapService } from './map.service';
 import { CamelizePipe } from 'ngx-pipes';
 import { CommonModule } from '@angular/common';
@@ -15,7 +14,7 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
 AgmCoreModule.forRoot({
-      apiKey: ApiKey.Get_Api
+      apiKey: 'AIzaSyBMSXo71AWNtN7-Zmy30Q3Ni1Ygq-0N_Ho'
     }),
     CommonModule
   ],
