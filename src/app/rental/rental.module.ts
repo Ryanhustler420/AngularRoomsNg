@@ -12,10 +12,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 
 import { UppercasePipe } from './../common/pipes/uppercase.pipe';
+import { AuthGuard } from './../auth/shared/auth.guard';
+
 const routes: Routes = [
     {path: 'rentals', component: RentalComponent , children : [
         {path : '', component: RentalListComponent},
-        {path : ':rentalId', component: RentalDetailComponent}
+        {path : ':rentalId', component: RentalDetailComponent, canActivate:[AuthGuard]}
     ]},
   ]
 
@@ -28,7 +30,7 @@ const routes: Routes = [
         UppercasePipe
     ],
     imports:[
-        CommonModule,
+    CommonModule,
         RouterModule.forChild(routes),
         HttpClientModule,
         NgPipesModule,

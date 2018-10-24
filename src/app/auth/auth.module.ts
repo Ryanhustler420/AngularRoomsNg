@@ -6,10 +6,11 @@ import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from './shared/auth.service';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
-    {path: 'login', component: LoginComponent },
-    {path: 'register', component: RegisterComponent}
+    {path: 'login', component: LoginComponent, canActivate:[AuthGuard] },
+    {path: 'register', component: RegisterComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -18,12 +19,12 @@ const routes: Routes = [
     RegisterComponent
   ],
   imports: [
-  RouterModule.forChild(routes),
+RouterModule.forChild(routes),
     FormsModule,
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService]
+  providers: [AuthService,AuthGuard]
 })
 
 export class AuthModule { }
