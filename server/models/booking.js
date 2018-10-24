@@ -12,8 +12,7 @@ const bookingSchema = new Schema({
     },
     totalPrice:Number,
     days:{
-        type: Number,
-        required: true
+        type: Number
     },
     guests:Number,
     createdAt: {
@@ -22,12 +21,10 @@ const bookingSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        ref: 'User'
     },
     rental: {
-        type: Schema.Types.ObjectId,
-        required: true
+        type: Schema.Types.ObjectId
     }
 });
 
