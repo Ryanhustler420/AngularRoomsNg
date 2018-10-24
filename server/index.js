@@ -13,7 +13,7 @@ const bookingRoutes = require('./routes/bookings');
 mongoose.connect(config.DB_URI, { useNewUrlParser: true })
     .then((success) => {
         const fakeDb = new FakeDb();
-        fakeDb.seedDb();
+        // fakeDb.seedDb();
     });
 
 const app = express();
