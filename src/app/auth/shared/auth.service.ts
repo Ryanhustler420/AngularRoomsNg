@@ -39,13 +39,19 @@ export class AuthService {
         .map((token) => this.setToken(token));
     }
 
+    public getUserName(): string {
+        return this.decodedToken.username;
+    }
+
     public isAuthenticated() : boolean {
         return moment().isBefore(this.getExpiration());
     }
 
-    // public logOut() {
-    //     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    //     var token = currentUser.token; // your token
-    // }
+    public logOut() {
+        localStorage.removeItem('bwm_auth');
+        localStorage.removeItem('bwm_meta');
+
+        this.decodedToken = new DecodedToken();
+    }
 
 }
