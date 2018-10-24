@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { RentalComponent } from './rental/rental.component';
@@ -19,10 +19,11 @@ const routes: Routes = [
     HeaderComponent
   ],
   imports: [
-  RouterModule.forRoot(routes),
+RouterModule.forRoot(routes),
     BrowserModule,
     RentalModule,
-    AuthModule
+    AuthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

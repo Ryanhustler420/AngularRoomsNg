@@ -47,6 +47,10 @@ export class AuthService {
         return moment().isBefore(this.getExpiration());
     }
 
+    public getAuthToken(): string {
+        return localStorage.getItem('bwm_auth');
+    }
+
     public logOut() {
         localStorage.removeItem('bwm_auth');
         localStorage.removeItem('bwm_meta');

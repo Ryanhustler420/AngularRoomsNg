@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from './shared/auth.service';
 import { AuthGuard } from './shared/auth.guard';
+import { TokenInterceptor } from './shared/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const routes: Routes = [
     {path: 'login', component: LoginComponent, canActivate:[AuthGuard] },
@@ -19,12 +21,16 @@ const routes: Routes = [
     RegisterComponent
   ],
   imports: [
-RouterModule.forChild(routes),
+  RouterModule.forChild(routes),
     FormsModule,
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService,AuthGuard]
+  providers: [AuthService,AuthGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }]
 })
 
 export class AuthModule { }
