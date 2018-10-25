@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const moment = require('moment');
 const Rental = require('../models/rental');
 const Booking = require('../models/booking');
+const User = require('../models/user');
 
 exports.createBooking = function (req,res) {
     const {startAt, endAt, totalPrice, guests, days, rental} = req.body;
@@ -24,13 +25,18 @@ exports.createBooking = function (req,res) {
 
             // Check here for valid booking
             if(isValidBooking(booking, foundRental)){
+                booking.user = user;
+                booking.rental = foundRental;
                 foundRental.bookings.push(booking);
-                foundRental.save();
-                booking.save();
+                booking.save((err) => {
+                    if(err){
+                        return res.status(422).send({errors: normalizeErrors(err.errors)});
+                    }
+                    User.update({_id: user.id}, {$push: {bookings:booking}},(err,data) => {});
+                    foundRental.save();                    
+                    return res.json({'startAt':booking.startAt, endAt: booking.endAt});
+                });
                 //update rental, update user
-
-                return res.json({'created': true});
-
             }else{
                 return res.status(422).send({errors: [{title: 'Invalid Booking!', detail: 'Choosen Date are already taken!'}]})
             }
