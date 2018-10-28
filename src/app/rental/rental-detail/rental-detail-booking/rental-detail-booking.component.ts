@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Booking } from './../../../booking/shared/booking.model';
+import { HelperService } from './../../../common/service/helper.service';
 
 @Component({
   selector: 'bwm-rental-detail-booking',
@@ -12,6 +13,7 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() bookings : Booking[];
 
   public daterange: any = {};
+  public bookedOutDates: any[] = [];
 
   public options: any = {
     locale: { format: 'YYYY-MM-DD' },
@@ -21,7 +23,7 @@ export class RentalDetailBookingComponent implements OnInit {
     style: 'big'
   };
 
-  constructor() { }
+  constructor(private helper : HelperService) { }
   
   ngOnInit() {
     this.getBookedOutDates();
@@ -30,7 +32,8 @@ export class RentalDetailBookingComponent implements OnInit {
   private getBookedOutDates() {
     if(this.bookings && this.bookings.length > 0){
       this.bookings.forEach((booking: Booking) => {
-        console.log(booking);
+        const dateRange =  this.helper.getRangeDates(booking.startAt,booking.endAt);
+        this.bookedOutDates.push(...dateRange);
       });
     }
   }
