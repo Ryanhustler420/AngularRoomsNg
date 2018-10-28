@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgPipesModule } from 'ngx-pipes';
 import { MapModule } from './../common/map/map.module';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { FormsModule } from '@angular/forms';
 
 import { Routes, RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
@@ -34,12 +35,13 @@ const routes: Routes = [
         RentalDetailBookingComponent
     ],
     imports:[
-CommonModule,
+        CommonModule,
         RouterModule.forChild(routes),
         HttpClientModule,
         NgPipesModule,
         MapModule,
-        Daterangepicker
+        Daterangepicker,
+        FormsModule
     ],
     providers:[RentalService,HelperService]
 })

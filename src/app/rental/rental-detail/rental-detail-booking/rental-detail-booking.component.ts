@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Booking } from './../../../booking/shared/booking.model';
 import { HelperService } from './../../../common/service/helper.service';
 import * as moment from 'moment';
+import { Rental } from './../../Shared/rental.model';
 
 @Component({
   selector: 'bwm-rental-detail-booking',
@@ -10,8 +11,7 @@ import * as moment from 'moment';
 })
 export class RentalDetailBookingComponent implements OnInit {
 
-  @Input() price : number;
-  @Input() bookings : Booking[];
+  @Input() rental : Rental;
   newBooking: Booking;
 
   public daterange: any = {};
@@ -38,27 +38,25 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   private getBookedOutDates() {
-    if(this.bookings && this.bookings.length > 0){
-      this.bookings.forEach((booking: Booking) => {
+    const bookings : Booking[] = this.rental.bookings;
+
+    if(bookings && bookings.length > 0){
+      bookings.forEach((booking: Booking) => {
         const dateRange =  this.helper.getBookingRangeOfDate(booking.startAt,booking.endAt);
         this.bookedOutDates.push(...dateRange);
       });
     }
   }
 
-  public selectedDate(value: any, datepicker?: any) {
-    // datepicker.start = value.start;
-    // datepicker.end = value.end;
+  reserveRental() {
+    console.log(this.newBooking);
+  }
 
+  public selectedDate(value: any, datepicker?: any) {
     this.newBooking.startAt = this.helper.formatBookingDate(value.start);
     this.newBooking.endAt = this.helper.formatBookingDate(value.end);
     this.newBooking.days = -(value.start.diff(value.end, 'days'));
-
-    console.log(this.newBooking);
-    
-    this.daterange.start = value.start;
-    this.daterange.end = value.end;
-    this.daterange.label = value.label;
+    this.newBooking.totalPrice = this.newBooking.days * this.rental.dailyRate;
   }
 
 
