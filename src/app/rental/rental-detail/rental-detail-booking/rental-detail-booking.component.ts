@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Booking } from './../../../booking/shared/booking.model';
 import { HelperService } from './../../../common/service/helper.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,6 +6,8 @@ import * as moment from 'moment';
 import { Rental } from './../../Shared/rental.model';
 import { BookingService } from './../../../booking/shared/booking.service';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty'
+import { DaterangePickerComponent } from 'ng2-daterangepicker';
+import { element } from 'protractor';
 
 @Component({
   selector: 'bwm-rental-detail-booking',
@@ -15,6 +17,9 @@ import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty
 export class RentalDetailBookingComponent implements OnInit {
 
   @Input() rental : Rental;
+  @ViewChild(DaterangePickerComponent)
+    private picker: DaterangePickerComponent;
+
   newBooking: Booking;
   closeResult: string;
   modalRef: any;
@@ -29,7 +34,8 @@ export class RentalDetailBookingComponent implements OnInit {
     opens: 'left',
     todayText: 'Oggi',
     style: 'big',
-    isInvalidDate: this.checkForInvalidDates.bind(this)
+    isInvalidDate: this.checkForInvalidDates.bind(this),
+    autoUpdateInput: false
   };
 
   constructor(private helper : HelperService,
@@ -71,8 +77,15 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   openConfirmModel(content) {
+    this.picker.datePicker;
     this.errors = [];
     this.modalRef =  this.modalService.open(content);
+  }
+
+  private resetDatePicker() {
+    this.picker.datePicker.setStartDate(moment());
+    this.picker.datePicker.setEndDate(moment());
+    this.picker.datePicker.element.val('');
   }
 
   private addNewBookedDate(bookingData: any){
@@ -87,6 +100,7 @@ export class RentalDetailBookingComponent implements OnInit {
       this.addNewBookedDate(booking);
       this.newBooking = new Booking();
       this.modalRef.close();
+      this.resetDatePicker();
       this.addToast();
     },
     (errorResponse: any) => {
@@ -96,6 +110,7 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   public selectedDate(value: any, datepicker?: any) {
+    this.options.autoUpdateInput = true;
     this.newBooking.startAt = this.helper.formatBookingDate(value.start);
     this.newBooking.endAt = this.helper.formatBookingDate(value.end);
     this.newBooking.days = -(value.start.diff(value.end, 'days'));
