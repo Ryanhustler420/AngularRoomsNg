@@ -5,6 +5,7 @@ import { RentalComponent } from './rental.component';
 import { CommonModule } from '@angular/common';
 import { RentalService } from './Shared/rental.service';
 import { HelperService } from './../common/service/helper.service';
+import { BookingService } from './../booking/shared/booking.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgPipesModule } from 'ngx-pipes';
 import { MapModule } from './../common/map/map.module';
@@ -35,7 +36,7 @@ const routes: Routes = [
         RentalDetailBookingComponent
     ],
     imports:[
-        CommonModule,
+    CommonModule,
         RouterModule.forChild(routes),
         HttpClientModule,
         NgPipesModule,
@@ -43,6 +44,6 @@ const routes: Routes = [
         Daterangepicker,
         FormsModule
     ],
-    providers:[RentalService,HelperService]
+    providers:[RentalService,HelperService,BookingService]
 })
 export class RentalModule {}

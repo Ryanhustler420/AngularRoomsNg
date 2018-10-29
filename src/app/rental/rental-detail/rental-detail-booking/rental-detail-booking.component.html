@@ -31,7 +31,7 @@
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title">Confirm Booking <p>{{newBooking.startAt}} to {{newBooking.endAt}}</p></h4>
-    <button type="button" class="close" aria-label="Close" >
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.close()" >
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -47,6 +47,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-bwm" (click)="createBooking()">Confirm</button>
-    <button type="button" class="btn btn-bwm" >Close</button>
+    <button type="button" class="btn btn-bwm" (click)="modalRef.close()">Close</button>
   </div>
 </ng-template>

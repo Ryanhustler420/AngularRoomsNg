@@ -4,6 +4,7 @@ import { HelperService } from './../../../common/service/helper.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { Rental } from './../../Shared/rental.model';
+import { BookingService } from './../../../booking/shared/booking.service';
 
 @Component({
   selector: 'bwm-rental-detail-booking',
@@ -15,6 +16,7 @@ export class RentalDetailBookingComponent implements OnInit {
   @Input() rental : Rental;
   newBooking: Booking;
   closeResult: string;
+  modalRef: any;
 
   public daterange: any = {};
   public bookedOutDates: any[] = [];
@@ -29,7 +31,8 @@ export class RentalDetailBookingComponent implements OnInit {
   };
 
   constructor(private helper : HelperService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private bookingService : BookingService) { }
   
   ngOnInit() {
     this.getBookedOutDates();
@@ -52,11 +55,19 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   openConfirmModel(content) {
-    this.modalService.open(content);
+    this.modalRef =  this.modalService.open(content);
   }
 
   createBooking(){
-    console.log(this.newBooking);
+    // console.log(this.newBooking);
+    this.newBooking.rental = this.rental;
+    this.bookingService.createBooking(this.newBooking).subscribe((booking:Booking) => {
+      this.newBooking = new Booking();
+      this.modalRef.close();
+    },
+    () => {
+      console.log('error in rental-detail-booking component on method createBooking() !');
+    });
   }
 
   public selectedDate(value: any, datepicker?: any) {
