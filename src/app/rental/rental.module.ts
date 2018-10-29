@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { RentalDetailComponent } from './rental-detail/rental-detail.component';
 
+import { ToastyModule } from 'ng2-toasty';
 import { UppercasePipe } from './../common/pipes/uppercase.pipe';
 import { AuthGuard } from './../auth/shared/auth.guard';
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
@@ -42,8 +43,9 @@ const routes: Routes = [
         NgPipesModule,
         MapModule,
         Daterangepicker,
-        FormsModule
+        FormsModule,
+        ToastyModule.forRoot()
     ],
-    providers:[RentalService,HelperService,BookingService]
+    providers:[RentalService,HelperService,BookingService,ToastyModule]
 })
 export class RentalModule {}

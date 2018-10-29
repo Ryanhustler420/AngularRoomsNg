@@ -52,3 +52,7 @@ type this address in browser
 ```
 npm install --save @ng-bootstrap/ng-bootstrap@2.0.0
 ```
+
+``install toast lib``
+
+> npm i ng2-toasty

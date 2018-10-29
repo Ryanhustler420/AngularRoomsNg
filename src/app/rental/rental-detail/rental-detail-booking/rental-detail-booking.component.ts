@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { Rental } from './../../Shared/rental.model';
 import { BookingService } from './../../../booking/shared/booking.service';
+import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty'
 
 @Component({
   selector: 'bwm-rental-detail-booking',
@@ -33,11 +34,26 @@ export class RentalDetailBookingComponent implements OnInit {
 
   constructor(private helper : HelperService,
               private modalService: NgbModal,
-              private bookingService : BookingService) { }
+              private bookingService : BookingService,
+              private toastr:ToastyService, 
+              private toastyConfig: ToastyConfig) { 
+              this.toastyConfig.theme = 'material';
+  }
   
   ngOnInit() {
     this.getBookedOutDates();
     this.newBooking = new Booking();
+  }
+
+  addToast(){
+    var toastOptions:ToastOptions = {
+      title: "Success",
+      msg: "Booking has been succesfully created, check your booking detail in manage section",
+      showClose: true,
+      timeout: 5000,
+      theme: 'material'
+    };
+    this.toastr.success(toastOptions);
   }
 
   private checkForInvalidDates(date){
@@ -71,6 +87,7 @@ export class RentalDetailBookingComponent implements OnInit {
       this.addNewBookedDate(booking);
       this.newBooking = new Booking();
       this.modalRef.close();
+      this.addToast();
     },
     (errorResponse: any) => {
       //console.log('error in rental-detail-booking component on method createBooking() !');
