@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Booking } from './../../../booking/shared/booking.model';
 import { HelperService } from './../../../common/service/helper.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { Rental } from './../../Shared/rental.model';
 
@@ -13,6 +14,7 @@ export class RentalDetailBookingComponent implements OnInit {
 
   @Input() rental : Rental;
   newBooking: Booking;
+  closeResult: string;
 
   public daterange: any = {};
   public bookedOutDates: any[] = [];
@@ -26,7 +28,8 @@ export class RentalDetailBookingComponent implements OnInit {
     isInvalidDate: this.checkForInvalidDates.bind(this)
   };
 
-  constructor(private helper : HelperService) { }
+  constructor(private helper : HelperService,
+              private modalService: NgbModal) { }
   
   ngOnInit() {
     this.getBookedOutDates();
@@ -48,8 +51,8 @@ export class RentalDetailBookingComponent implements OnInit {
     }
   }
 
-  reserveRental() {
-    console.log(this.newBooking);
+  openConfirmModel(content) {
+    this.modalService.open(content);
   }
 
   public selectedDate(value: any, datepicker?: any) {
