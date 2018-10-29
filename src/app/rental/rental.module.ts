@@ -36,7 +36,7 @@ const routes: Routes = [
         RentalDetailBookingComponent
     ],
     imports:[
-    CommonModule,
+        CommonModule,
         RouterModule.forChild(routes),
         HttpClientModule,
         NgPipesModule,

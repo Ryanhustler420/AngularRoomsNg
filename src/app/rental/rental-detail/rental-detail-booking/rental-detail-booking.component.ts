@@ -20,6 +20,7 @@ export class RentalDetailBookingComponent implements OnInit {
 
   public daterange: any = {};
   public bookedOutDates: any[] = [];
+  errors: any[] = [];
 
   public options: any = {
     locale: { format: Booking.DATE_FORMAT },
@@ -48,25 +49,32 @@ export class RentalDetailBookingComponent implements OnInit {
 
     if(bookings && bookings.length > 0){
       bookings.forEach((booking: Booking) => {
-        const dateRange =  this.helper.getBookingRangeOfDate(booking.startAt,booking.endAt);
-        this.bookedOutDates.push(...dateRange);
+        this.addNewBookedDate(booking);
       });
     }
   }
 
   openConfirmModel(content) {
+    this.errors = [];
     this.modalRef =  this.modalService.open(content);
+  }
+
+  private addNewBookedDate(bookingData: any){
+    const dateRange =  this.helper.getBookingRangeOfDate(bookingData.startAt,bookingData.endAt);
+    this.bookedOutDates.push(...dateRange);
   }
 
   createBooking(){
     // console.log(this.newBooking);
     this.newBooking.rental = this.rental;
     this.bookingService.createBooking(this.newBooking).subscribe((booking:Booking) => {
+      this.addNewBookedDate(booking);
       this.newBooking = new Booking();
       this.modalRef.close();
     },
-    () => {
-      console.log('error in rental-detail-booking component on method createBooking() !');
+    (errorResponse: any) => {
+      //console.log('error in rental-detail-booking component on method createBooking() !');
+      this.errors = errorResponse.error.errors;
     });
   }
 
