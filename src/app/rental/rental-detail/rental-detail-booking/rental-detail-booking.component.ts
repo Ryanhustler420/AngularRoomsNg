@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Booking } from './../../../booking/shared/booking.model';
 import { HelperService } from './../../../common/service/helper.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -10,6 +10,7 @@ import { DaterangePickerComponent } from 'ng2-daterangepicker';
 import { element } from 'protractor';
 
 @Component({
+  encapsulation: ViewEncapsulation.None, 
   selector: 'bwm-rental-detail-booking',
   templateUrl: './rental-detail-booking.component.html',
   styleUrls: ['./rental-detail-booking.component.scss']
