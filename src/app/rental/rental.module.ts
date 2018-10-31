@@ -19,11 +19,13 @@ import { ToastyModule } from 'ng2-toasty';
 import { UppercasePipe } from './../common/pipes/uppercase.pipe';
 import { AuthGuard } from './../auth/shared/auth.guard';
 import { RentalDetailBookingComponent } from './rental-detail/rental-detail-booking/rental-detail-booking.component';
+import { RentalSearchComponent } from './rental-search/rental-search.component';
 
 const routes: Routes = [
     {path: 'rentals', component: RentalComponent , children : [
         {path : '', component: RentalListComponent},
-        {path : ':rentalId', component: RentalDetailComponent, canActivate:[AuthGuard]}
+        {path : ':rentalId', component: RentalDetailComponent, canActivate:[AuthGuard]},
+        {path : ':city/homes', component: RentalSearchComponent}
     ]},
   ]
 
@@ -34,7 +36,8 @@ const routes: Routes = [
         RentalComponent,
         RentalDetailComponent,
         UppercasePipe,
-        RentalDetailBookingComponent
+        RentalDetailBookingComponent,
+        RentalSearchComponent
     ],
     imports:[
         CommonModule,
