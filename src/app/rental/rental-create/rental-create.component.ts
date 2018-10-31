@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Rental } from './../Shared/rental.model';
+import { RentalService } from './../Shared/rental.service';
 
 @Component({
   selector: 'bwm-rental-create',
@@ -9,8 +10,9 @@ import { Rental } from './../Shared/rental.model';
 export class RentalCreateComponent implements OnInit {
 
   newRental: Rental;
+  rentalCategories = Rental.CATEGORIES;
 
-  constructor() { }
+  constructor(private rentalService: RentalService) { }
 
   ngOnInit() {
     this.newRental = new Rental();
@@ -18,7 +20,15 @@ export class RentalCreateComponent implements OnInit {
   }
 
   createRental() {
-    console.log("form created",this.newRental);
+    this.rentalService.createRental(this.newRental).subscribe((success) => {
+
+    },(err) => {
+
+    });
+  }
+
+  handleImageChange(){
+    this.newRental.image = 'https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/13/image.jpeg';
   }
 
 }

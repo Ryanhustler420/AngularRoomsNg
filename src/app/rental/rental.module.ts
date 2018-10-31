@@ -25,7 +25,7 @@ import { RentalCreateComponent } from './rental-create/rental-create.component';
 const routes: Routes = [
     {path: 'rentals', component: RentalComponent , children : [
         {path : '', component: RentalListComponent},
-        {path : 'new', component: RentalCreateComponent},
+        {path : 'new', component: RentalCreateComponent, canActivate:[AuthGuard]},
         {path : ':rentalId', component: RentalDetailComponent, canActivate:[AuthGuard]},
         {path : ':city/homes', component: RentalSearchComponent}
     ]},

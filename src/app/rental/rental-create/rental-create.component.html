@@ -22,8 +22,7 @@
           <div class="form-group">
               <label for="category">Category</label>
               <select class="form-control" id="city" name="category" [(ngModel)]="newRental.category">
-                <option value="house" name="house"> house </option>
-                <option value="condo" name="condo"> condo </option>
+                <option *ngFor="let cat of rentalCategories"> {{cat}} </option>
               </select>
           </div>
 
@@ -35,6 +34,7 @@
               class="form-control" 
               id="image" 
               placeholder="Upload file..."
+              (change)="handleImageChange()"
             >
           </div>
 
