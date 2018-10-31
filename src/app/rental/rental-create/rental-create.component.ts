@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Rental } from './../Shared/rental.model';
 import { RentalService } from './../Shared/rental.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bwm-rental-create',
@@ -11,8 +13,9 @@ export class RentalCreateComponent implements OnInit {
 
   newRental: Rental;
   rentalCategories = Rental.CATEGORIES;
+  errors: any[] = [];
 
-  constructor(private rentalService: RentalService) { }
+  constructor(private rentalService: RentalService, private router:Router) { }
 
   ngOnInit() {
     this.newRental = new Rental();
@@ -20,10 +23,10 @@ export class RentalCreateComponent implements OnInit {
   }
 
   createRental() {
-    this.rentalService.createRental(this.newRental).subscribe((success) => {
-
-    },(err) => {
-
+    this.rentalService.createRental(this.newRental).subscribe((rental:Rental) => {
+      this.router.navigate([`/rentals/${rental._id}`])
+    },(err: HttpErrorResponse) => {
+      this.errors = err.error.errors;
     });
   }
 
