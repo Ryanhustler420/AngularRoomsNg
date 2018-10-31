@@ -13,6 +13,10 @@ export class RentalService {
         return this.http.get('/api/v1/rentals'); 
       }
 
+      public getRentalsWithCity(cityName:string){
+        return this.http.get(`/api/v1/rentals?city=${cityName}`);
+      }
+
       public getRentalById(rentalId:string) : Observable<any> {
         return this.http.get(`/api/v1/rentals/${rentalId}`);
       }
