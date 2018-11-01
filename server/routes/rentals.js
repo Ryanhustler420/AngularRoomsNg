@@ -9,6 +9,19 @@ router.get('/secret' , UserCtrl.authMiddleware, function(req,res){
     res.json({"secret":true})
 });
 
+router.get('/manage',UserCtrl.authMiddleware, function(req, res){
+    const user = res.locals.user;
+
+    Rental.where({user})
+        .populate('rentals')
+        .exec(function(err, foundRentals){
+            if(err){
+                return res.status(422).send({errors: normalizeErrors(err.errors)});
+            }   
+            return res.json(foundRentals);
+        });
+});
+
 router.get('/:id', (req,res) => {
     const rentalId = req.params.id;
 
@@ -36,7 +49,7 @@ router.delete('/:id',UserCtrl.authMiddleware, function(req,res) {
         if(err) {
             return res.status(422).send({errors: normalizeErrors(err.errors)});
         }
-        
+
         if(user.id !== foundRental.user.id){
             return res.status(422).send({error:[{title:'Invalid User!', detail: 'You are not rental owner!'}]});
         }
@@ -51,7 +64,7 @@ router.delete('/:id',UserCtrl.authMiddleware, function(req,res) {
             }
             return res.json({"Status": "deleted"});
         });
-    })
+    });
 });
 
 router.post('', UserCtrl.authMiddleware, function(req,res){
