@@ -8,6 +8,7 @@ import { BookingService } from './../../../booking/shared/booking.service';
 import { ToastyService, ToastyConfig, ToastOptions, ToastData } from 'ng2-toasty'
 import { DaterangePickerComponent } from 'ng2-daterangepicker';
 import { element } from 'protractor';
+import { AuthService } from './../../../auth/shared/auth.service';
 
 @Component({
   encapsulation: ViewEncapsulation.None, 
@@ -43,7 +44,8 @@ export class RentalDetailBookingComponent implements OnInit {
               private modalService: NgbModal,
               private bookingService : BookingService,
               private toastr:ToastyService, 
-              private toastyConfig: ToastyConfig) { 
+              private toastyConfig: ToastyConfig,
+              public auth: AuthService) { 
               this.toastyConfig.theme = 'material';
   }
   
