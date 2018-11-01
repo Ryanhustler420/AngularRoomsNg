@@ -23,22 +23,21 @@
             <a class="nav-link" routerLink="/register">Register</a>
           </li>
         </ng-container>
-      <ng-container *ngIf="auth.isAuthenticated()">
-        <div class="nav-item dropdown clickable">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
-            Owner Section
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" routerLink="/rentals/new">Create Rental</a>
-          </div>
-        </div>
-
-        <li class="nav-item" >
+      <ng-container *ngIf="auth.isAuthenticated()">        
+          <li class="nav-item" >
             <a class="nav-link clickable" >{{auth.getUserName()}}</a>
-        </li>
-        <li class="nav-item" >
-            <a class="nav-link clickable" (click)="logout()">Logout</a>
-        </li>
+          </li>
+          <div class="nav-item dropdown clickable">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+              Owner Section
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" routerLink="/rentals/new">Create Rental</a>
+            </div>
+          </div>
+          <li class="nav-item" >
+              <a class="nav-link clickable" (click)="logout()">Logout</a>
+          </li>
       </ng-container>
       </ul>
     </div>
