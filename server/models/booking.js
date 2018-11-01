@@ -24,7 +24,8 @@ const bookingSchema = new Schema({
         ref: 'User'
     },
     rental: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        ref: 'Rental'
     }
 });
 
