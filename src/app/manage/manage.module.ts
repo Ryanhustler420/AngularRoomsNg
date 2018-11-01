@@ -7,6 +7,8 @@ import { ManageRentalsComponent } from './manage-rentals/manage-rentals.componen
 import { CommonModule } from '@angular/common';
 import { RentalService } from './../rental/Shared/rental.service';
 import { BookingService } from './../booking/shared/booking.service';
+import { NgPipesModule } from 'ngx-pipes';
+import { FormatDatePipe } from './../common/pipes/format-date.pipe';
 
 const routes: Routes = [
     {path: 'manage', component: ManageComponent , children : [
@@ -19,11 +21,13 @@ const routes: Routes = [
     declarations:[
         ManageComponent,
         ManageBookingsComponent, 
-        ManageRentalsComponent
+        ManageRentalsComponent,
+        FormatDatePipe
     ],
     imports:[
-RouterModule.forChild(routes),
-        CommonModule
+    RouterModule.forChild(routes),
+        CommonModule,
+        NgPipesModule
     ],
     providers:[RentalService,BookingService]
 })

@@ -9,15 +9,15 @@
           </div>
           <div class="card-block">
           <ng-container *ngIf="booking.rental">
-            <h4 class="card-title">{{booking.rental.title}} - {{booking.rental.city}}</h4> <!-- rental title and city -->
+            <h4 class="card-title">{{booking.rental.title}} - {{booking.rental.city | ucwords}}</h4> <!-- rental title and city -->
             <p class="card-text booking-desc">{{booking.rental.description}}</p> <!-- rental description -->
           </ng-container>
-            <p class="card-text booking-days"> {{booking.startAt}} - {{booking.endAt}} | {{booking.days}} days</p> <!-- booking startAt - endAt | days-->
+            <p class="card-text booking-days"> {{booking.startAt | formatDate}} - {{booking.endAt | formatDate}} | {{booking.days}} days</p> <!-- booking startAt - endAt | days-->
             <p class="card-text booking-price"><span>Price: </span> <span class="booking-price-value">{{booking.totalPrice}} $</span></p> <!-- booking price -->
             <a *ngIf="booking.rental" routerLink="/rentals/{{booking.rental._id}}" class="btn btn-bwm">Go To Rental</a> <!-- link to rental detail -->
           </div>
           <div class="card-footer text-muted">
-            Created {{booking.createdAt}} <!-- booking createdAt -->
+            Created {{booking.createdAt | formatDate}} <!-- booking createdAt -->
           </div>
         </div>
       </div>
