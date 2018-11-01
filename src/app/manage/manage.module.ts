@@ -5,6 +5,8 @@ import { ManageComponent } from './manage.component';
 import { ManageBookingsComponent } from './manage-bookings/manage-bookings.component';
 import { ManageRentalsComponent } from './manage-rentals/manage-rentals.component';
 import { CommonModule } from '@angular/common';
+import { RentalService } from './../rental/Shared/rental.service';
+import { BookingService } from './../booking/shared/booking.service';
 
 const routes: Routes = [
     {path: 'manage', component: ManageComponent , children : [
@@ -20,9 +22,9 @@ const routes: Routes = [
         ManageRentalsComponent
     ],
     imports:[
-        RouterModule.forChild(routes),
+RouterModule.forChild(routes),
         CommonModule
     ],
-    providers:[]
+    providers:[RentalService,BookingService]
 })
 export class ManageModule {}
