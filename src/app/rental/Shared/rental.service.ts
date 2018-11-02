@@ -28,4 +28,8 @@ export class RentalService {
       public getUserRentals() :Observable<any>{
         return this.http.get('/api/v1/rentals/manage');
       }
+
+      public deleteRental(id:string): Observable<any> {
+        return this.http.delete(`/api/v1/rentals/${id}`);
+      }
 }

@@ -10,6 +10,7 @@ import { BookingService } from './../booking/shared/booking.service';
 import { NgPipesModule } from 'ngx-pipes';
 import { FormatDatePipe } from './../common/pipes/format-date.pipe';
 import { ManageRentalBookingComponent } from './manage-rentals/manage-rental-booking/manage-rental-booking.component';
+import { ToastyModule } from 'ng2-toasty';
 
 const routes: Routes = [
     {path: 'manage', component: ManageComponent , children : [
@@ -27,10 +28,11 @@ const routes: Routes = [
         ManageRentalBookingComponent
     ],
     imports:[
-    RouterModule.forChild(routes),
+        RouterModule.forChild(routes),
         CommonModule,
-        NgPipesModule
+        NgPipesModule,
+        ToastyModule.forRoot()
     ],
-    providers:[RentalService,BookingService]
+    providers:[RentalService,BookingService,ToastyModule]
 })
 export class ManageModule {}
