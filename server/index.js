@@ -4,6 +4,7 @@ const config = require('./config/dev');
 const Rental = require('./models/rental');
 const FakeDb = require('./fake-db');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 //Routes imports
 const rentalRoutes = require('./routes/rentals');
@@ -24,6 +25,13 @@ app.use(bodyParser.json());
 app.use('/api/v1/rentals',rentalRoutes);
 app.use('/api/v1/users',userRoutes);
 app.use('/api/v1/bookings', bookingRoutes);
+
+const appPath = path.join(__dirname, '..', 'dist');
+app.use(express.static(appPath));
+
+app.get('*', function(req,res){
+    res.sendFile(path.resolve(appPath,'index.html'));
+})
 
 const PORT = process.env.PORT || 3001;
 
