@@ -13,7 +13,7 @@ router.get('/manage',UserCtrl.authMiddleware, function(req, res){
     const user = res.locals.user;
 
     Rental.where({user})
-        .populate('rentals')
+        .populate('bookings')
         .exec(function(err, foundRentals){
             if(err){
                 return res.status(422).send({errors: normalizeErrors(err.errors)});
@@ -55,7 +55,7 @@ router.delete('/:id',UserCtrl.authMiddleware, function(req,res) {
         }
 
         if(foundRental.bookings.length > 0){
-            return res.status(422).send({error:[{title:'Active Bookings!', detail: 'Could delete Rental with active Bookings!'}]});
+            return res.status(422).send({error:[{title:'Active Bookings!', detail: 'Could not delete Rental with active Bookings!'}]});
         }
 
         foundRental.remove(function(err){
