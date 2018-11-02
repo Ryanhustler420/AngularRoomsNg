@@ -9,6 +9,7 @@ import { RentalService } from './../rental/Shared/rental.service';
 import { BookingService } from './../booking/shared/booking.service';
 import { NgPipesModule } from 'ngx-pipes';
 import { FormatDatePipe } from './../common/pipes/format-date.pipe';
+import { ManageRentalBookingComponent } from './manage-rentals/manage-rental-booking/manage-rental-booking.component';
 
 const routes: Routes = [
     {path: 'manage', component: ManageComponent , children : [
@@ -22,7 +23,8 @@ const routes: Routes = [
         ManageComponent,
         ManageBookingsComponent, 
         ManageRentalsComponent,
-        FormatDatePipe
+        FormatDatePipe,
+        ManageRentalBookingComponent
     ],
     imports:[
     RouterModule.forChild(routes),

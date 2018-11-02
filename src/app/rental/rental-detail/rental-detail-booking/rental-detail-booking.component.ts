@@ -25,6 +25,7 @@ export class RentalDetailBookingComponent implements OnInit {
   newBooking: Booking;
   closeResult: string;
   modalRef: any;
+  placetrigger = false;
 
   public daterange: any = {};
   public bookedOutDates: any[] = [];
@@ -97,6 +98,7 @@ export class RentalDetailBookingComponent implements OnInit {
   }
 
   createBooking(){
+    this.placetrigger = true;
     // console.log(this.newBooking);
     this.newBooking.rental = this.rental;
     this.bookingService.createBooking(this.newBooking).subscribe((booking:Booking) => {
@@ -105,6 +107,7 @@ export class RentalDetailBookingComponent implements OnInit {
       this.modalRef.close();
       this.resetDatePicker();
       this.addToast();
+      this.placetrigger = false;
     },
     (errorResponse: any) => {
       //console.log('error in rental-detail-booking component on method createBooking() !');

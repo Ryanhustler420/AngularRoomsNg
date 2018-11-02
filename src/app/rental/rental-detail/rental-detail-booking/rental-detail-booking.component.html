@@ -56,7 +56,7 @@
     </p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-bwm" (click)="createBooking()">Confirm</button>
+    <button type="button" class="btn btn-bwm" [disabled]="placetrigger" (click)="createBooking()">Confirm</button>
     <button type="button" class="btn btn-bwm" (click)="modalRef.close()">Close</button>
   </div>
 </ng-template>
