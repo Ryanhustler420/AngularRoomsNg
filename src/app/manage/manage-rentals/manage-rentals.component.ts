@@ -12,6 +12,7 @@ export class ManageRentalsComponent implements OnInit {
 
   rentals: Rental[];
   errors: any[] = [];
+  rentalDeleteIndex: number;
 
   constructor(private rentalService: RentalService) { }
 

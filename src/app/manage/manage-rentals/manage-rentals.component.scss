@@ -25,6 +25,10 @@
         font-size: 10px;
     }
 
+    .btn-success, .btn-danger{
+        font-size: 12px;
+    }
+
     .card-footer{
         font-size: 14px;
 
@@ -32,6 +36,11 @@
             display: inline-block;
             line-height: 40px;
             margin: 0;
+        }
+
+        .confirm-message{
+            font-weight: bold;
+            margin-right: 10px;
         }
     }
 
