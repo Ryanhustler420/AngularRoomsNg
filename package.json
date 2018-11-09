@@ -2,16 +2,16 @@
   "name": "angular-starter",
   "version": "0.0.0",
   "license": "MIT",
-  "engines":{
-    "node":"10.4.0",
-    "npm":"4.6.1"
+  "engines": {
+    "node": "10.4.0",
+    "npm": "4.6.1"
   },
   "scripts": {
     "ng": "ng",
     "start": "npm run start --prefix server",
-    "start-dev" : "ng serve --proxy-config proxy.conf.json",
+    "start-dev": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod",
-    "heroku-postbuild":"npm run build",
+    "heroku-postbuild": "npm run build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -28,7 +28,7 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-    "@ng-bootstrap/ng-bootstrap": "^2.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@types/jquery": "^3.2.12",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

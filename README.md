@@ -25,7 +25,7 @@ cd roomFinder-project
 ```
 npm install
 ```
-And now run
+And now run 
 
 ```
 ng-serve
@@ -45,7 +45,7 @@ type this address in browser
 
 > in client auth feature branch run build and check if every thing is working as expected
 
-> install model for booking detail using 'ng bootstrap angular' google search 
+> install model for booking detail using 'ng bootstrap angular' google search
 
 ``install this specific version``
 
